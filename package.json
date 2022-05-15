@@ -1,11 +1,29 @@
 {
-  "name": "npm-test",
-  "version": "0.1.0",
-  "private": true,
+  "name": "doubeck-react-select",
+  "description": "select component for OC P14",
+  "version": "0.6.0",
+  "keywords": [
+    "react",
+    "components",
+    "select"
+  ],
+  "private": false,
+  "main": "dist/Select.js",
+  "module": "dist/Select.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarionDoubeck/P14_Select_npm_package.git"
+  },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "doubeck-react-select": "^0.6.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
@@ -13,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf dist && NODE_ENV=production babel src/components --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +52,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10"
   }
 }

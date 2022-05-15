@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+//import Select from './components/Select'
+import Select from 'doubeck-react-select'
 
 function App() {
+  const data = [
+    { "name" : "Sales" },
+    { "name" : "Marketing" },
+    { "name" : "Engineering" },
+    { "name" : "Human Resources" },
+    { "name" : "Legal" }
+]
+
+const handleSelect = ()=> {
+  alert('Hello World !')
+}
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Select name={'test'} data={data} value={'select0'} updateSelect={handleSelect} />
     </div>
   );
 }
