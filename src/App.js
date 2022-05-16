@@ -1,6 +1,7 @@
 import './App.css';
 import Select from './components/Select'
 //import Select from 'doubeck-react-select'
+import {useState} from 'react'
 
 function App() {
   const data = [
@@ -11,13 +12,17 @@ function App() {
     { "name" : "Legal" }
 ]
 
-const handleSelect = ()=> {
-  alert('Hello World !')
+  const [myValue, setMyValue] = useState()
+const handleSelect = (value, name)=> {
+  setMyValue(value)
 }
+
+
 
   return (
     <div className="App">
       <Select name={'test'} data={data} value={'select0'} updateSelect={handleSelect} />
+      <div>{myValue}</div>
     </div>
   );
 }

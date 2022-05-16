@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Select = ({name, data, updateSelect}) => {
 
     const optionContainerClassName = 'doubeck-select-option-container-'+name
     const optionContainerQuery = '.doubeck-select-option-container-'+name
+    const [title, setTitle] = useState(name.charAt(0).toUpperCase() + name.slice(1))
 
     const openMenu = () => {
         const options = document.querySelectorAll(`${optionContainerQuery}`)
@@ -24,7 +25,9 @@ const Select = ({name, data, updateSelect}) => {
 
     const validate = (e) => {
         e.preventDefault()
-        updateSelect(e.target.value, name)
+        const selectedValue = e.target.outerText.toLowerCase();
+        updateSelect(selectedValue, name)
+        setTitle(e.target.outerText)
         closeMenu()
     }
 
@@ -32,7 +35,7 @@ const Select = ({name, data, updateSelect}) => {
         <div 
             className={`${optionContainerClassName} hidden`}
             key={option.name}
-            onClick={e => validate(e) }
+            onClick={(e) => validate(e) }
             style={{display:'flex', flexDirection:'column'}}
         ><span className='doubeck-select-option'>{option.name}</span></div>
     )
@@ -40,7 +43,7 @@ const Select = ({name, data, updateSelect}) => {
     return (
       <div className='doubeck-select-container'>
             <div className='doubeck-select-title' onClick={openMenu}>
-                {name.charAt(0).toUpperCase() + name.slice(1)}
+                {title}
                 <div style={{fontSize:'2rem'}}>&#x21D5;</div>
             </div>
           {options}
