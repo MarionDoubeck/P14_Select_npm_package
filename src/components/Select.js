@@ -2,8 +2,11 @@ import React from 'react'
 
 const Select = ({name, data, updateSelect}) => {
 
+    const optionContainerClassName = 'doubeck-select-option-container-'+name
+    const optionContainerQuery = '.doubeck-select-option-container-'+name
+
     const openMenu = () => {
-        const options = document.querySelectorAll('.doubeck-select-option-container')
+        const options = document.querySelectorAll(`${optionContainerQuery}`)
         if (! options[0].classList.contains('hidden')){
             closeMenu()
             return
@@ -11,7 +14,7 @@ const Select = ({name, data, updateSelect}) => {
         options.forEach(option => option.classList.remove('hidden'))
     }
     const closeMenu = () => {
-        const options = document.querySelectorAll('.doubeck-select-option-container')
+        const options = document.querySelectorAll(`${optionContainerQuery}`)
         if (options[0].classList.contains('hidden')){
             openMenu()
             return
@@ -27,7 +30,7 @@ const Select = ({name, data, updateSelect}) => {
 
     const options = data.map( option => 
         <div 
-            className='doubeck-select-option-container hidden' 
+            className={`${optionContainerClassName} hidden`}
             key={option.name}
             onClick={e => validate(e) }
             style={{display:'flex', flexDirection:'column'}}

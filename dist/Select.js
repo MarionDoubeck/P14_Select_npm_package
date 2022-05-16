@@ -15,9 +15,11 @@ const Select = _ref => {
     data,
     updateSelect
   } = _ref;
+  const optionContainerClassName = 'doubeck-select-option-container-' + name;
+  const optionContainerQuery = '.doubeck-select-option-container-' + name;
 
   const openMenu = () => {
-    const options = document.querySelectorAll('.doubeck-select-option-container');
+    const options = document.querySelectorAll("".concat(optionContainerQuery));
 
     if (!options[0].classList.contains('hidden')) {
       closeMenu();
@@ -28,7 +30,7 @@ const Select = _ref => {
   };
 
   const closeMenu = () => {
-    const options = document.querySelectorAll('.doubeck-select-option-container');
+    const options = document.querySelectorAll("".concat(optionContainerQuery));
 
     if (options[0].classList.contains('hidden')) {
       openMenu();
@@ -45,7 +47,7 @@ const Select = _ref => {
   };
 
   const options = data.map(option => /*#__PURE__*/_react.default.createElement("div", {
-    className: "doubeck-select-option-container hidden",
+    className: "".concat(optionContainerClassName, " hidden"),
     key: option.name,
     onClick: e => validate(e),
     style: {
