@@ -1,6 +1,6 @@
 import './App.css';
-//import Select from './components/Select'
-import Select from 'doubeck-react-select'
+import Select from './components/Select'
+//import Select from 'doubeck-react-select'
 
 function App() {
   const data = [

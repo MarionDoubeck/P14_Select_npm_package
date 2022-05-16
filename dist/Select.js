@@ -13,20 +13,58 @@ const Select = _ref => {
   let {
     name,
     data,
-    value,
     updateSelect
   } = _ref;
-  const options = data.map(option => /*#__PURE__*/_react.default.createElement("option", {
-    class: "doubeck-select-option",
-    key: option.name
-  }, option.name));
-  return /*#__PURE__*/_react.default.createElement("select", {
-    className: "doubeck-select",
-    id: name,
-    name: name,
-    value: value,
-    onChange: e => updateSelect(e.target.value, name)
-  }, options);
+
+  const openMenu = () => {
+    const options = document.querySelectorAll('.doubeck-select-option-container');
+
+    if (!options[0].classList.contains('hidden')) {
+      closeMenu();
+      return;
+    }
+
+    options.forEach(option => option.classList.remove('hidden'));
+  };
+
+  const closeMenu = () => {
+    const options = document.querySelectorAll('.doubeck-select-option-container');
+
+    if (options[0].classList.contains('hidden')) {
+      openMenu();
+      return;
+    }
+
+    options.forEach(option => option.classList.add('hidden'));
+  };
+
+  const validate = e => {
+    e.preventDefault();
+    updateSelect(e.target.value, name);
+    closeMenu();
+  };
+
+  const options = data.map(option => /*#__PURE__*/_react.default.createElement("div", {
+    className: "doubeck-select-option-container hidden",
+    key: option.name,
+    onClick: e => validate(e),
+    style: {
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "doubeck-select-option"
+  }, option.name)));
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "doubeck-select-container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "doubeck-select-title",
+    onClick: openMenu
+  }, name.charAt(0).toUpperCase() + name.slice(1), /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      fontSize: '2rem'
+    }
+  }, "\u21D5")), options);
 };
 
 var _default = Select;

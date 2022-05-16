@@ -1,19 +1,47 @@
 import React from 'react'
 
-const Select = ({name, data, value, updateSelect}) => {
+const Select = ({name, data, updateSelect}) => {
 
-    const options = data.map( option => <option class='doubeck-select-option' key={option.name}>{option.name}</option>)
+    const openMenu = () => {
+        const options = document.querySelectorAll('.doubeck-select-option-container')
+        if (! options[0].classList.contains('hidden')){
+            closeMenu()
+            return
+        }
+        options.forEach(option => option.classList.remove('hidden'))
+    }
+    const closeMenu = () => {
+        const options = document.querySelectorAll('.doubeck-select-option-container')
+        if (options[0].classList.contains('hidden')){
+            openMenu()
+            return
+        }
+        options.forEach(option => option.classList.add('hidden'))
+    }
+
+    const validate = (e) => {
+        e.preventDefault()
+        updateSelect(e.target.value, name)
+        closeMenu()
+    }
+
+    const options = data.map( option => 
+        <div 
+            className='doubeck-select-option-container hidden' 
+            key={option.name}
+            onClick={e => validate(e) }
+            style={{display:'flex', flexDirection:'column'}}
+        ><span className='doubeck-select-option'>{option.name}</span></div>
+    )
     
     return (
-      <select
-        className='doubeck-select'
-        id= {name}
-        name = {name}
-        value = {value}
-        onChange = {e => updateSelect(e.target.value, name)}
-      >
+      <div className='doubeck-select-container'>
+            <div className='doubeck-select-title' onClick={openMenu}>
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+                <div style={{fontSize:'2rem'}}>&#x21D5;</div>
+            </div>
           {options}
-      </select>
+      </div>
     )
   }
   
