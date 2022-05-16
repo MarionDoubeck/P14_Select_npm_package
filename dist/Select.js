@@ -16,10 +16,13 @@ const Select = _ref => {
     value,
     updateSelect
   } = _ref;
-  const options = data.map(select => /*#__PURE__*/_react.default.createElement("option", {
-    key: select.name
-  }, select.name));
+  const options = data.map(option => /*#__PURE__*/_react.default.createElement("option", {
+    class: "doubeck-select-option",
+    key: option.name
+  }, option.name));
   return /*#__PURE__*/_react.default.createElement("select", {
+    className: "doubeck-select",
+    id: name,
     name: name,
     value: value,
     onChange: e => updateSelect(e.target.value, name)
